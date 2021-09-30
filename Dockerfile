@@ -4,6 +4,10 @@ USER root
 RUN apt-get update && apt-get install -y amazon-ecr-credential-helper bsdmainutils \
         && apt-get autoremove -y
 #COPY config.json  ~/docker/config.json
+RUN apt-get update \
+      && apt-get install -y sudo \
+      && rm -rf /var/lib/apt/lists/*
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 #====================================
   # DOCKER & DOCKER-COMPOSE
